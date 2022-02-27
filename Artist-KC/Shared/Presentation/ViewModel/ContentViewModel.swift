@@ -3,7 +3,7 @@ import Foundation
 
 class ContentViewModel: ObservableObject{
     @Published  var bands: [Band] = []
-    @Published var albums: [Album] = []
+   
     
     private  let getAllBands: GetAllBandsUseCaseProtocol = GetAllBandsUseCase()
     private let saveBand: SaveBandUseCaseProtocol = SaveBandUseCase()

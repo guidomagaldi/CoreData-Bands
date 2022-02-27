@@ -44,7 +44,7 @@ struct ContentView: View {
                                         Text("\(album.name)")
                                         
                                     }
-                                    .onDelete(perform: deleteAlbum)
+                                    .onDelete (perform: deleteAlbum)
                                     .toolbar {
                                                 ToolbarItem {
                                                     Button {
@@ -114,15 +114,21 @@ struct ContentView: View {
         
     }
     
-    private func deleteAlbum(offsets: IndexSet) {
-        withAnimation {
+
           
-            let bandsToRemove =
-            offsets.map { viewModel.bands[$0].albums}
-            print(bandsToRemove)
+         private func deleteAlbum(at offsets: IndexSet) {
+             let retrievedBand =
+            offsets.map { viewModel.bands[$0]}
+             retrievedBand.map { retrievedData in
+                 let albumToRemove = retrievedData.albums
+                 print(albumToRemove)
+                 
+             }
+        
+          
             
         }
-    }
+    
     
     
     
