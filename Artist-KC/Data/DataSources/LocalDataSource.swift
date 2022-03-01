@@ -6,6 +6,7 @@ protocol LocalDataSourceProtocol{
     func deleteBands(completionHandler: @escaping () -> ())
     func deleteSpecificBand(bandId: [UUID], completionHandler: @escaping ([UUID]) -> ())
     func associateAlbum(bandId: UUID, album: AlbumDTO, completionHandler: @escaping ([BandDTO]) -> ())
+    func deleteSpecificAlbum(bandId: UUID, album: AlbumDTO, completionHandler: @escaping ([BandDTO]) -> ())
 
 }
 
@@ -32,7 +33,11 @@ struct LocalDataSource: LocalDataSourceProtocol{
     func associateAlbum(bandId: UUID, album: AlbumDTO, completionHandler: @escaping ([BandDTO]) -> ()){
         pController.associateAlbum(bandId: bandId, album: album, completionHandler: completionHandler)
     }
-
+    
+    func deleteSpecificAlbum(bandId: UUID, album: AlbumDTO, completionHandler: @escaping ([BandDTO]) -> ()) {
+        pController.deleteSpecificAlbum(bandId: bandId, album: album, completionHandler: completionHandler)
+        
+    }
     
     
     

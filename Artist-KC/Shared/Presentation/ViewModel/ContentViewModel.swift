@@ -10,6 +10,7 @@ class ContentViewModel: ObservableObject{
     private let deleteAllBands: DeleteAllBandsUseCaseProtocol = DeleteAllBandsUseCase()
     private let deleteBand: DeleteBandUseCaseProtocol = DeleteBandUseCase()
     private let associateAlbumWithBand: AssociateAlbumUseCaseProtocol = AssociateAlbumUseCase()
+    private let deleteAlbum: DeleteAlbumUseCaseProtocol = DeleteAlbumUseCase()
     
     
     func getSavedArtists(){
@@ -64,4 +65,13 @@ class ContentViewModel: ObservableObject{
             }
     }
 }
+    
+    func deleteSpecificAlbum(bandId: UUID, album: Album){
+        deleteAlbum.deleteSpecificAlbum(bandId: bandId, album: album) { retrievedBands in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.bands = retrievedBands
+        }
+        }
+    }
 }

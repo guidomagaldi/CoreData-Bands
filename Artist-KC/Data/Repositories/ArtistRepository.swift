@@ -6,7 +6,8 @@ protocol ArtistRepositoryProtocol{
     func deleteBands(completionHandler: @escaping () -> ())
     func deleteSpecificBand(bandId: [UUID], completionHandler: @escaping ([UUID]) -> ())
     func associateAlbum(bandId: UUID, album: Album, completionHandler: @escaping ([Band]) -> ())
-    
+    func deleteSpecificAlbum(bandId: UUID, album: Album, completionHandler: @escaping ([Band]) -> ()) 
+
     
 }
 
@@ -46,8 +47,16 @@ struct ArtistRepository: ArtistRepositoryProtocol{
         }
 
         )
-    
-    
 }
-}
+    
+    func deleteSpecificAlbum(bandId: UUID, album: Album, completionHandler: @escaping ([Band]) -> ()) {
+        localDataSource.deleteSpecificAlbum(bandId: bandId, album: AlbumDTO(domain: album),  completionHandler: { bandsDtos in
+            let domainBands = bandsDtos.map { currentBandDto in
+                Band(dto: currentBandDto)
+            }
+            completionHandler(domainBands)
+        }
+                                            
+                                            )}
+    }
 

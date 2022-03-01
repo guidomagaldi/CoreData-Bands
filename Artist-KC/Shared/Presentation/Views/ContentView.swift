@@ -43,9 +43,11 @@ struct ContentView: View {
                                     ForEach(band.albums, id: \.self){  album in
                                         Text("\(album.name)")
                                         
-                                    }
-                                    .onDelete (perform: deleteAlbum)
-                                    .toolbar {
+                                    }.onDelete(perform:  { index in
+                                        deleteAlbums(band: band , offsets: index, id: band.id)
+                                    })
+                                   
+                    .toolbar {
                                                 ToolbarItem {
                                                     Button {
                                                         addAlbum(bandId: band.bandId())
@@ -107,6 +109,19 @@ struct ContentView: View {
         }
     }
     
+    private func deleteAlbums(band: Band, offsets: IndexSet, id: UUID) {
+        withAnimation {
+            
+            let albumsToremove = offsets.map { retrievedAlbums in
+                let albums = band.albums[retrievedAlbums]
+            
+                viewModel.deleteSpecificAlbum(bandId: band.id, album: albums)
+              
+//            viewModel.deleteBand(bandId: bandsToRemove)
+        }
+    }
+    }
+    
     private func addAlbum(bandId: UUID) {
         let album = "album al azar"
         viewModel.associateAlbum(bandId: bandId, album: Album(name: album))
@@ -115,19 +130,7 @@ struct ContentView: View {
     }
     
 
-          
-         private func deleteAlbum(at offsets: IndexSet) {
-             let retrievedBand =
-            offsets.map { viewModel.bands[$0]}
-             retrievedBand.map { retrievedData in
-                 let albumToRemove = retrievedData.albums
-                 print(albumToRemove)
-                 
-             }
-        
-          
-            
-        }
+  
     
     
     

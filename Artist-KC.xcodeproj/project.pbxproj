@@ -27,6 +27,7 @@
 		06C6E73527C95D83002028FF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C6E73427C95D83002028FF /* Album.swift */; };
 		06C6E73727C95E9A002028FF /* AlbumDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C6E73627C95E9A002028FF /* AlbumDTO.swift */; };
 		06C6E73927C962FA002028FF /* AssociateAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C6E73827C962FA002028FF /* AssociateAlbumUseCase.swift */; };
+		06CD1EE827CDA2140089FE5A /* DeleteAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD1EE727CDA2140089FE5A /* DeleteAlbumUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		06C6E73427C95D83002028FF /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		06C6E73627C95E9A002028FF /* AlbumDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDTO.swift; sourceTree = "<group>"; };
 		06C6E73827C962FA002028FF /* AssociateAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociateAlbumUseCase.swift; sourceTree = "<group>"; };
+		06CD1EE727CDA2140089FE5A /* DeleteAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAlbumUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				06C6E73027C8326D002028FF /* DeleteAllBandsUseCase.swift */,
 				06C6E73227C83FA6002028FF /* DeleteBandUseCase.swift */,
 				06C6E73827C962FA002028FF /* AssociateAlbumUseCase.swift */,
+				06CD1EE727CDA2140089FE5A /* DeleteAlbumUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				06C6E73327C83FA6002028FF /* DeleteBandUseCase.swift in Sources */,
 				06710ABE27C6D3D700D80F61 /* BandDTO.swift in Sources */,
 				06C6E73527C95D83002028FF /* Album.swift in Sources */,
+				06CD1EE827CDA2140089FE5A /* DeleteAlbumUseCase.swift in Sources */,
 				06710AC327C6DA0500D80F61 /* LocalDataSource.swift in Sources */,
 				06710A6527C5649900D80F61 /* Artist_KCApp.swift in Sources */,
 				06710AC527C6F01A00D80F61 /* SaveBandUseCase.swift in Sources */,

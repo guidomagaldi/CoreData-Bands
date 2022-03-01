@@ -13,6 +13,7 @@ protocol PersistenceControllerProtocol{
     func deleteBands(completionHandler: @escaping () -> ())
     func deleteSpecificBand(bandId: [UUID], completionHandler: @escaping ([UUID]) -> ())
     func associateAlbum(bandId: UUID, album: AlbumDTO, completionHandler: @escaping ([BandDTO]) -> ())
+    func deleteSpecificAlbum(bandId: UUID, album: AlbumDTO, completionHandler: @escaping ([BandDTO]) -> ())
     
     
     
@@ -185,6 +186,46 @@ extension PersistenceController:PersistenceControllerProtocol{
         }
     }
     
+    func deleteSpecificAlbum(bandId: UUID, album: AlbumDTO, completionHandler: @escaping ([BandDTO]) -> ()) {
+        container.performBackgroundTask { privateMOC in
+            let request : NSFetchRequest<NSFetchRequestResult> = CDAlbum.fetchRequest()
+            request.predicate = NSPredicate(format: "name == %@", "\(album)")
+            print(request)
+            do {
+                
+                
+                let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+                deleteRequest.resultType = .resultTypeCount
+                var count: NSBatchDeleteResult?
+                
+                do {
+                    try privateMOC.execute(deleteRequest)
+                } catch{
+                    print("F: \(error)")
+                }
+                
+                let result = count?.result as? Int ?? 1
+                print("Album deleted with name: \(album)")
+                
+                let bandRequest = CDBand.fetchRequest()
+                bandRequest.predicate = nil
+                
+                var retrievedBands : [CDBand] = []
+                
+                do {
+                    retrievedBands = try privateMOC.fetch(bandRequest)
+                } catch  {
+                    print("F:\(error)")
+                    completionHandler([])
+                }
+                
+                let transformedDtosB = retrievedBands.map { BandDTO(cd: $0) }
+                completionHandler(transformedDtosB)
+         
+            }
+    }
     
     
+    
+}
 }
